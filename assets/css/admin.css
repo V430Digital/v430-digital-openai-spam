@@ -1,0 +1,97 @@
+/**
+ * Admin styles for V430 CF7 OpenAI Spam Check plugin.
+ */
+
+/* OpenAI panel in CF7 editor */
+.v430-openai-panel {
+	padding: 0;
+}
+
+.v430-openai-panel .v430-api-key-warning {
+	border-left-color: #dc3232 !important;
+	background-color: #feeaea;
+	margin: 0 0 20px 0;
+}
+
+.v430-openai-panel .v430-api-key-warning p {
+	margin: 0.75em 0;
+}
+
+.v430-openai-panel .form-table {
+	margin-top: 0;
+}
+
+.v430-openai-panel .form-table th {
+	width: 200px;
+	padding-left: 0;
+}
+
+.v430-openai-panel .form-table td {
+	padding-left: 0;
+}
+
+.v430-openai-panel .notice.inline {
+	margin: 15px 0;
+	padding: 8px 12px;
+}
+
+.v430-openai-panel .notice.inline p {
+	margin: 0.5em 0;
+}
+
+.v430-openai-panel .notice.inline:last-child {
+	margin-bottom: 0;
+}
+
+/* Disabled state styling */
+.v430-openai-panel input[disabled] {
+	opacity: 0.6;
+}
+
+.v430-openai-panel label:has(input[disabled]) {
+	opacity: 0.6;
+}
+
+/* Settings page styles */
+.v430-openai-settings .card {
+	margin-top: 20px;
+	padding: 15px;
+}
+
+.v430-openai-settings .notice ul {
+	margin: 0.5em 0;
+	padding-left: 20px;
+}
+
+.v430-openai-settings .notice li {
+	margin-bottom: 0.25em;
+}
+
+/* API key field styling */
+#V430_OPENAI_API_KEY {
+	font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+	letter-spacing: 0.5px;
+}
+
+/* Test connection button and result */
+#test-api-connection {
+	margin-right: 10px;
+}
+
+#api-test-result .notice {
+	margin: 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 782px) {
+	.v430-openai-panel .form-table th,
+	.v430-openai-panel .form-table td {
+		width: auto;
+		display: block;
+		padding: 10px 0;
+	}
+	
+	.v430-openai-panel .form-table th {
+		padding-bottom: 5px;
+	}
+}
