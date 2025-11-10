@@ -183,12 +183,17 @@ class V430_CF7_OpenAI_Spam {
 	/**
 	 * Hook into CF7 spam detection.
 	 *
+	 * This method uses a "fail-open" approach: if any error occurs during classification
+	 * (API errors, network issues, invalid responses, etc.), the submission is treated as
+	 * NOT SPAM to avoid blocking legitimate form submissions. All errors are logged to
+	 * WordPress error log for monitoring and debugging.
+	 *
 	 * @param bool $spam Current spam status.
 	 * @param WPCF7_Submission $submission The submission object.
 	 * @return bool Updated spam status.
 	 */
 	public function check_spam( $spam, $submission = null ) {
-		// If already marked as spam, keep it that way
+		// If already marked as spam by other filters, keep it that way
 		if ( $spam ) {
 			return $spam;
 		}
@@ -241,10 +246,23 @@ class V430_CF7_OpenAI_Spam {
 		
 		// Handle classification result
 		if ( is_wp_error( $classification ) ) {
+			// Always log errors to WordPress error log, regardless of debug mode
+			error_log( 
+				sprintf(
+					'V430 CF7 OpenAI Spam Check - Classification Error [Form ID: %d]: %s (Code: %s)',
+					$contact_form->id(),
+					$classification->get_error_message(),
+					$classification->get_error_code()
+				)
+			);
+			
+			// Additional debug info if debug mode is enabled
 			if ( V430_CF7_OPENAI_DEBUG ) {
-				error_log( 'V430 CF7 OpenAI: Classification failed: ' . $classification->get_error_message() );
+				error_log( 'V430 CF7 OpenAI: Full error data: ' . print_r( $classification->get_error_data(), true ) );
 			}
-			return $spam; // Fail-open
+			
+			// Fail-open: treat as not spam to allow form submission
+			return $spam;
 		}
 
 		// Apply spam logic based on classification and settings
