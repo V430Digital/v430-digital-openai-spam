@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Plugin version.
  */
-define( 'V430_CF7_OPENAI_VERSION', '1.0.0' );
+define( 'V430_CF7_OPENAI_VERSION', '1.0.1' );
 
 /**
  * Plugin constants.
