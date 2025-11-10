@@ -3,7 +3,7 @@
  * Plugin Name: V430 CF7 OpenAI Spam Check
  * Plugin URI: https://v430.it
  * Description: Classifies Contact Form 7 messages via OpenAI and blocks spam automatically.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: V430 Digital
  * Author URI: https://v430.it
  * Text Domain: v430-cf7-openai-spam
